@@ -1,0 +1,4 @@
+build
+buildWSL
+out
+!builder.sh
