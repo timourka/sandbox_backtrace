@@ -1,4 +1,4 @@
 build
-buildWSL
+buildWSL/*
+!buildWSL/builder.sh
 out
-!builder.sh
