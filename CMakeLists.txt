@@ -3,11 +3,10 @@ project(SandboxProject)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+add_definitions (-DBOOST_STACKTRACE_USE_BACKTRACE)
 
-# Опция: выбрать stacktrace backend (можно задать через -D)
-option(STACKTRACE_BACKEND "Backend for boost::stacktrace" "addr2line")
+set(CMAKE_C_FLAGS_RELEASE "-O0 -DNDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-O0 -DNDEBUG -std=c++0x")
 
 # Выбор компонента Boost в зависимости от платформы
 if (WIN32)
@@ -15,7 +14,7 @@ if (WIN32)
     set(STACKTRACE_COMPONENT "stacktrace_windbg")
 else()
     message(STATUS "Detected platform: Linux/Unix")
-    set(STACKTRACE_COMPONENT "stacktrace_addr2line")
+    set(STACKTRACE_COMPONENT "stacktrace_backtrace")
 endif()
 
 # Найти Boost с нужным компонентом

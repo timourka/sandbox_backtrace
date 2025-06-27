@@ -2,3 +2,4 @@ build
 buildWSL/*
 !buildWSL/builder.sh
 out
+.vs
